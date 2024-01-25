@@ -1,0 +1,96 @@
+---
+services:
+    php:
+        build: ./docker/php/php82
+        container_name: php
+        volumes_from:
+            - source
+        links:
+            - db
+        environment:
+            TZ: Europe/Moscow
+        stdin_open: true
+        tty: true
+        networks:
+            - bitrixdock
+        restart: unless-stopped
+
+    web_server:
+        build: ./docker/nginx
+        container_name: web_server
+        depends_on:
+            - source
+        volumes_from:
+            - source
+        ports:
+            - '${INTERFACE}:80:80'
+            - '${INTERFACE}:443:443'
+        links:
+            - php
+        networks:
+            - bitrixdock
+        environment:
+            TZ: Europe/Moscow
+        stdin_open: true
+        tty: true
+        restart: unless-stopped
+
+    db:
+        build: ./docker/mysql
+        container_name: db
+        volumes:
+            - ./mysql/init:/docker-entrypoint-initdb.d
+        volumes_from:
+            - source
+        ports:
+            - '${INTERFACE}:3306:3306'
+        environment:
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            TZ: Europe/Moscow
+        command: mysqld --user=root --sql-mode=""
+        networks:
+            - bitrixdock
+        stdin_open: true
+        tty: true
+        restart: unless-stopped
+
+    adminer:
+        image: dockette/adminer:full
+        container_name: adminer
+        links:
+            - db:db
+        ports:
+            - '${INTERFACE}:8080:80'
+        environment:
+            UPLOAD: 1024M # upload_max_filesize, post_max_size
+            TZ: Europe/Moscow
+        restart: unless-stopped
+        stdin_open: true
+        tty: true
+        networks:
+            - bitrixdock
+
+    source:
+        image: alpine:latest
+        container_name: source
+        volumes:
+            - ./logs/nginx:/var/log/nginx
+            - ./logs/php:/var/log/php
+            - ./logs/db:/var/log/mysql
+            - db:/var/lib/mysql
+            - ./:/var/www/bitrix
+            - /etc/localtime:/etc/localtime/:ro
+        networks:
+            - bitrixdock
+
+volumes:
+    db:
+        driver: local
+    cache:
+        driver: local
+
+networks:
+    bitrixdock:

@@ -1,0 +1,47 @@
+/node_modules/
+/bower_components/
+/vendor/
+
+/upload
+
+/local/build
+hosts.yml
+.env
+
+
+#Exclude all of core files
+/bitrix/*
+
+#But not the templates and non bitrix components
+#!/bitrix/templates
+#!/bitrix/components
+#/bitrix/components/bitrix
+#
+##Exclude bitrix gadgets
+#!/bitrix/gadgets
+#/bitrix/gadgets/bitrix
+#
+##User can use that directory to store some stuff, but it's not really recommended, just use /local instead of this
+#!/bitrix/php_interface/
+#
+##Exclude database configs
+#/bitrix/php_interface/dbconn.php
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*

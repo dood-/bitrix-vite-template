@@ -1,0 +1,17 @@
+{
+    "require": {
+        "php": ">=8.1",
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "squizlabs/php_codesniffer": "3.*"
+    },
+    "scripts": {
+        "lint:php": "php ./vendor/bin/phpcs  --encoding=utf-8 --ignore=./local/components/*/templates/*  --standard=ruleset.xml --extensions=php  ./local/classes ./local/components",
+        "fix:php":  "php ./vendor/bin/phpcbf --encoding=utf-8 --ignore=./local/components/*/templates/*  --standard=ruleset.xml --extensions=php  ./local/classes ./local/components"
+    },
+    "autoload": {
+        "psr-4": {"Local\\" : "local/classes/"}
+    }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ruleset name="BitrixStandard">
+    <description>A custom Bitrix coding Standard</description>
+
+    <rule ref="PSR2" />
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="140"/>
+            <property name="absoluteLineLimit" value="200"/>
+        </properties>
+    </rule>
+
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="error" value="false" />
+            <property name="forbiddenFunctions" type="array"
+                      value="sizeof=>count,delete=>unset,d=>null,var_dump=>null" />
+        </properties>
+    </rule>
+
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
+</ruleset>
