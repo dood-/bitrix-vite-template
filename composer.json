@@ -5,7 +5,8 @@
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
-        "squizlabs/php_codesniffer": "3.*"
+        "squizlabs/php_codesniffer": "3.*",
+        "yiisoft/var-dumper": "^1.7"
     },
     "scripts": {
         "lint:php": "php ./vendor/bin/phpcs  --encoding=utf-8 --ignore=./local/components/*/templates/*  --standard=ruleset.xml --extensions=php  ./local/classes ./local/components",

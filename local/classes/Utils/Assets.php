@@ -55,7 +55,7 @@ final class Assets
             return $this->hotAsset($this->buildDirectory . $file);
         }
 
-        return $this->buildDirectory . '/' . $this->chunk($file)['file'];
+        return $this->buildDirectory . $this->chunk($file)['file'];
     }
 
     public function renderAssetTag(string $asset): void

@@ -10,10 +10,10 @@
         "build": "vite build",
         "preview": "vite preview",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "lint:styles": "stylelint \"local/resources/sass/**/*.scss\" ; exit 0",
-        "lint:scripts": "eslint \"local/resources/scripts/**/*.+(js|vue)\" ; exit 0",
-        "fix:styles": "stylelint \"local/resources/sass/**/*.scss\" --fix ; exit 0",
-        "fix:scripts": "eslint \"local/resources/scripts/**/*.+(js|vue)\" --fix ; exit 0"
+        "lint:styles": "stylelint \"resources/styles/**/*.scss\" ; exit 0",
+        "lint:scripts": "eslint \"resources/scripts/**/*.+(js|vue)\" ; exit 0",
+        "fix:styles": "stylelint \"resources/styles/**/*.scss\" --fix; exit 0",
+        "fix:scripts": "eslint \"resources/scripts/**/*.+(js|vue)\" --fix ; exit 0"
     },
     "author": "Daniel Gurev",
     "license": "ISC",

@@ -29,6 +29,10 @@ export default defineConfig(({command, mode}) => {
             {
                 name: 'php-reload',
                 handleHotUpdate({file, server}) {
+                    const exclude = ['cache', 'log'];
+                    if (exclude.some(str => file.includes(str))) {
+                        return;
+                    }
                     if (file.endsWith('.php')) {
                         server.ws.send({type: 'full-reload', path: '*'})
                     }
