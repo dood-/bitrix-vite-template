@@ -12,6 +12,11 @@
         "lint:php": "php ./vendor/bin/phpcs  --encoding=utf-8 --ignore=./local/components/*/templates/*  --standard=ruleset.xml --extensions=php  ./local/classes ./local/components",
         "fix:php":  "php ./vendor/bin/phpcbf --encoding=utf-8 --ignore=./local/components/*/templates/*  --standard=ruleset.xml --extensions=php  ./local/classes ./local/components"
     },
+    "extra": {
+        "installer-paths": {
+            "local/modules/{$name}/": ["type:bitrix-module"]
+        }
+    },
     "autoload": {
         "psr-4": {"Local\\" : "local/classes/"}
     }
