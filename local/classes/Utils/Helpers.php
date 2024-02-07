@@ -51,16 +51,20 @@ final class Helpers
         );
     }
 
-    public static function renderPreviewImage(array $item, string $class = ''): string
+    public static function renderPreviewImage(array $item, string $class = ''): ?string
     {
         if (is_array($item['PREVIEW_PICTURE'])) {
             $picture = $item['PREVIEW_PICTURE'];
         } elseif (is_array($item['DETAIL_PICTURE'])) {
             $picture = $item['DETAIL_PICTURE'];
         } else {
-            return '<div class="image-placeholder"></div>';
+            return null;
         }
 
-        return '<img class="' . $class . '" src="' . $picture['SRC'] . '" alt="' . ($picture['ALT'] ?: $item['NAME']) . '" title="' . ($picture['TITLE'] ?: $item['NAME']) . '" loading="lazy"/>';
+        $title = $picture['TITLE'] ?: $item['NAME'];
+        $alt = $picture['ALT'] ?: $item['NAME'];
+        $src = $picture['SRC'];
+
+        return '<img class="' . $class . '" src="' . $src . '" alt="' . $alt . '" title="' . $title . '" loading="lazy"/>';
     }
 }

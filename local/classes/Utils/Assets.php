@@ -16,7 +16,7 @@ final class Assets
      * @throws JsonException
      */
     public function __construct(
-        private readonly string $buildDirectory = 'local/build/',
+        private readonly string $buildDirectory = '/local/build/',
         private readonly string $manifestFile = 'manifest.json'
     ) {
         $this->hot = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/' . $this->buildDirectory . '.hot') ?: null;
@@ -30,7 +30,7 @@ final class Assets
      * @throws JsonException
      */
     public static function init(
-        string $buildDirectory = 'local/build/',
+        string $buildDirectory = '/local/build/',
         string $manifestFile = 'manifest.json',
     ): Assets {
         $instance = new self($buildDirectory, $manifestFile);
