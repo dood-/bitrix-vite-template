@@ -44,7 +44,7 @@ final class Assets
 
     public function renderHmrTag(): void
     {
-        echo $this->makeScriptTag(rtrim($this->hot) . '/' . $this->buildDirectory . '@vite/client');
+        echo $this->makeScriptTag(rtrim($this->hot) . $this->buildDirectory . '@vite/client');
     }
 
     public function asset(string $asset): string
@@ -68,7 +68,7 @@ final class Assets
 
     private function hotAsset($asset): string
     {
-        return rtrim($this->hot) . '/' . $asset;
+        return rtrim($this->hot) . $asset;
     }
 
     private function chunk(string $file): array
